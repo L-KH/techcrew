@@ -8,6 +8,11 @@ export default async function handler(req, res) {
   try {
     const { image, confidenceThreshold } = req.body;
     
+    // Add error handling for missing API key
+    if (!process.env.ROBOFLOW_API_KEY) {
+      throw new Error('Roboflow API key is not configured');
+    }
+
     const response = await axios({
       method: "POST",
       url: "https://detect.roboflow.com/plastic-xxx5r/2",
@@ -33,10 +38,11 @@ export default async function handler(req, res) {
     console.error('API Error:', error);
     return res.status(500).json({ 
       message: error.message || 'Failed to process image',
-      error: error
+      error: error.toString()
     });
   }
 }
+
 
 
 function calculateRiskScore(predictions) {
