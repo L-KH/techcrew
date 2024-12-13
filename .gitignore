@@ -1,0 +1,10 @@
+# Initialize git repository
+git init
+
+# Create .gitignore file
+echo "node_modules
+.next
+.env
+.env.local
+.DS_Store" > .gitignore
+node_modules
