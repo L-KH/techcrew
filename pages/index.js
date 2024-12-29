@@ -37,9 +37,17 @@ import {
     Grid,
     GridItem,
   } from '@chakra-ui/react';
+  import { Link } from '@chakra-ui/react';
+  import NextLink from 'next/link';
+  import {
+    UnorderedList,
+    ListItem,
+  } from '@chakra-ui/react';
 
+  import { useTranslation } from '../contexts/LanguageContext';
 
 export default function Home() {
+  const { t } = useTranslation();
   const [image, setImage] = useState(null);
   const [predictions, setPredictions] = useState({
     river: [],
@@ -70,10 +78,10 @@ export default function Home() {
 const [riskScore, setRiskScore] = useState(0);
 
 const getRiskLevel = (score) => {
-    if (score === -1) return { label: 'Clean Area', color: 'green', message: 'No plastic detected in this image!' };
-    if (score < 30) return { label: 'Low Risk', color: 'green', message: 'Minor plastic presence detected' };
-    if (score < 60) return { label: 'Medium Risk', color: 'yellow', message: 'Moderate plastic pollution detected' };
-    return { label: 'High Risk', color: 'red', message: 'Significant plastic pollution detected!' };
+    if (score === -1) return { label: 'منطقة نظيفة', color: 'green', message: 'No plastic detected in this image!' };
+    if (score < 30) return { label: 'خطر منخفض', color: 'green', message: 'Minor plastic presence detected' };
+    if (score < 60) return { label: 'خطر متوسط"', color: 'yellow', message: 'Moderate plastic pollution detected' };
+    return { label: 'خطر مرتفع', color: 'red', message: 'Significant plastic pollution detected!' };
   };
 
   const detectPlastic = async () => {
@@ -167,78 +175,101 @@ const getRiskLevel = (score) => {
 
   return (
     <>
-    <Head>
-      <title>Plastic Detection System</title>
-      <link rel="icon" href="/logo.png" />
-    </Head>
-    <Container maxW="container.xl" py={10}>
-      <VStack spacing={8}>
-      <Box 
-  w={{ base: "150px", md: "200px" }}
-  h={{ base: "75px", md: "100px" }}
-  position="relative"
-  mb={4}
-  mx="auto"
-  transition="all 0.3s"
-  style={{
-    animation: 'float 3s ease-in-out infinite'
-  }}
-  _hover={{
-    transform: 'scale(1.1)',
-    filter: 'drop-shadow(0 0 20px rgba(49, 151, 149, 0.4))',
-  }}
-  cursor="pointer"
->
-  <Box
-    as="img"
-    src="/logo.png"
-    alt="Logo"
-    w="100%"
-    h="100%"
-    objectFit="contain"
-  />
+      <Head>
+        <title>نظام كشف البلاستيك</title>
+        <link rel="icon" href="/logo.png" />
+      </Head>
+
+{/* Navigation Bar */}
+<Box bg="teal.500" py={4} position="sticky" top={0} zIndex={10}>
+  <Container maxW="container.xl">
+    <HStack spacing={8} justify="center">
+      <NextLink href="/" passHref legacyBehavior>
+        <Link color="white" fontSize="lg" fontWeight="bold" _hover={{ color: 'teal.200' }}>
+        المستكشف
+        </Link>
+      </NextLink>
+      <NextLink href="/about" passHref legacyBehavior>
+        <Link color="white" fontSize="lg" fontWeight="bold" _hover={{ color: 'teal.200' }}>
+        من نحن
+        </Link>
+      </NextLink>
+    </HStack>
+  </Container>
 </Box>
 
 
 
-
-        <Heading color="teal.500">Plastic Detection System</Heading>
-  
-        <Box
-  {...getRootProps()}
-  p={10}
-  border="2px dashed"
-  borderColor="teal.300"
-  borderRadius="md"
-  w="full"
-  textAlign="center"
-  cursor="pointer"
-  bg="white"
-  transition="all 0.3s ease"
-  _hover={{
-    bg: 'gray.50',
-    transform: 'translateY(-2px)',
-    boxShadow: 'lg',
-    borderColor: 'teal.500',
-  }}
->
-  <input {...getInputProps()} />
-  <Text>Drag & drop an image here, or click to select</Text>
-</Box>
-  
-        {image && (
-          <Box position="relative" w="full">
-            <canvas
-              ref={canvasRef}
-              style={{
-                maxWidth: '100%',
-                height: 'auto',
-                borderRadius: '8px',
-                boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-              }}
+      {/* Main Content */}
+      <Container maxW="container.xl" py={10}>
+        <VStack spacing={8}>
+          {/* Logo Section */}
+          <Box 
+            w={{ base: "150px", md: "200px" }}
+            h={{ base: "75px", md: "100px" }}
+            position="relative"
+            mb={4}
+            mx="auto"
+            transition="all 0.3s"
+            style={{
+              animation: 'float 3s ease-in-out infinite'
+            }}
+            _hover={{
+              transform: 'scale(1.1)',
+              filter: 'drop-shadow(0 0 20px rgba(49, 151, 149, 0.4))',
+            }}
+            cursor="pointer"
+          >
+            <Box
+              as="img"
+              src="/logo.png"
+              alt="Logo"
+              w="100%"
+              h="100%"
+              objectFit="contain"
             />
           </Box>
-        )}
+
+          {/* Home Section */}
+          <Box id="home" w="full" mb={16}>
+            <Heading color="teal.500" mb={8}>نظام الكشف عن البلاستيك</Heading>
+            
+            <Box
+              {...getRootProps()}
+              p={10}
+              border="2px dashed"
+              borderColor="teal.300"
+              borderRadius="md"
+              w="full"
+              textAlign="center"
+              cursor="pointer"
+              bg="teal"
+              transition="all 0.3s ease"
+              _hover={{
+                bg: 'gray.50',
+                transform: 'translateY(-2px)',
+                boxShadow: 'lg',
+                borderColor: 'teal.500',
+              }}
+            >
+              <input {...getInputProps()} />
+              <Text>اسحب وأفلت الصورة هنا، أو انقر للاختيار</Text>
+            </Box>
+  
+            {image && (
+              <Box position="relative" w="full">
+                <canvas
+                  ref={canvasRef}
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto',
+                    borderRadius: '8px',
+                    boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                  }}
+                />
+              </Box>
+            )}
+
   
         {isLoading && <Progress size="xs" isIndeterminate w="full" />}
         <Box w="full" maxW="md">
@@ -278,7 +309,7 @@ const getRiskLevel = (score) => {
     transform: 'translateY(-2px)',
   }}
 >
-  Analyze Image
+تحليل الصورة
 </Button>
   
         {/* Grid section for statistics */}
@@ -350,7 +381,7 @@ const getRiskLevel = (score) => {
                 h="full" 
                 bg={getRiskLevel(riskScore).color} 
               />
-              <Text fontSize="lg" mb={3}>Risk Level</Text>
+              <Text fontSize="lg" mb={3}> مستوى الخطر</Text>
               <CircularProgress
                 value={riskScore === -1 ? 0 : riskScore}
                 size="120px"
@@ -405,6 +436,8 @@ const getRiskLevel = (score) => {
           </GridItem>
         </Grid>
       )}
+      </Box>
+       
     </VStack>
   </Container>
   </>
