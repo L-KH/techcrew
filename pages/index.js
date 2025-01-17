@@ -43,6 +43,7 @@ import {
     UnorderedList,
     ListItem,
   } from '@chakra-ui/react';
+  import { Checkbox } from '@chakra-ui/react';
 
   import { useTranslation } from '../contexts/LanguageContext';
 
@@ -57,6 +58,7 @@ export default function Home() {
   const [confidenceThreshold, setConfidenceThreshold] = useState(0.5);
   const canvasRef = useRef(null);
   const toast = useToast();
+  const [showConfidenceSettings, setShowConfidenceSettings] = useState(false);
 
   const onDrop = async (acceptedFiles) => {
     const file = acceptedFiles[0];
@@ -273,26 +275,39 @@ const getRiskLevel = (score) => {
   
         {isLoading && <Progress size="xs" isIndeterminate w="full" />}
         <Box w="full" maxW="md">
-  <HStack spacing={4} mb={2}>
-    <Text>Confidence Threshold:</Text>
-    <Text fontWeight="bold">{(confidenceThreshold * 100).toFixed(0)}%</Text>
-  </HStack>
-  <Slider
-    aria-label="confidence-threshold"
-    defaultValue={0.5}
-    min={0.1}
-    max={1}
-    step={0.1}
-    onChange={(val) => setConfidenceThreshold(val)}
+        <Checkbox 
+    colorScheme="teal" 
+    onChange={(e) => setShowConfidenceSettings(e.target.checked)}
+    mb={4}
   >
-    <SliderTrack>
-      <SliderFilledTrack bg="teal.500" />
-    </SliderTrack>
-    <SliderThumb boxSize={6} />
-  </Slider>
-  <Text fontSize="sm" color="gray.500" mt={2}>
-    Adjust the confidence threshold to control detection sensitivity
-  </Text>
+    إظهار إعدادات أخرى
+  </Checkbox>
+
+  {showConfidenceSettings && (
+    <>
+      <HStack spacing={4} mb={2}>
+        <Text>Confidence Threshold:</Text>
+        <Text fontWeight="bold">{(confidenceThreshold * 100).toFixed(0)}%</Text>
+      </HStack>
+      <Slider
+        aria-label="confidence-threshold"
+        defaultValue={0.5}
+        min={0.1}
+        max={1}
+        step={0.1}
+        onChange={(val) => setConfidenceThreshold(val)}
+      >
+        <SliderTrack>
+          <SliderFilledTrack bg="teal.500" />
+        </SliderTrack>
+        <SliderThumb boxSize={6} />
+      </Slider>
+      <Text fontSize="sm" color="gray.500" mt={2}>
+        Adjust the confidence threshold to control detection sensitivity
+      </Text>
+    </>
+  )}
+
 </Box>
         <Button
   as={motion.button}

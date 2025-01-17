@@ -11,7 +11,6 @@ import {
   Link,
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
-
 export default function About() {
   return (
     <>
@@ -166,8 +165,8 @@ export default function About() {
                         ml={0} // Removes default left margin
                     >
                       <ListItem>محمد ناصر إفري</ListItem>
-                      <ListItem>آية أبو مالك</ListItem>
-                      <ListItem>لامياء اليوسفي</ListItem>
+                      <ListItem>آية أبومالك</ListItem>
+                      <ListItem>لمياء اليوسفي</ListItem>
                       <ListItem>يوسف وعزيز</ListItem>
                       <ListItem>خديجة الحيان</ListItem>
                       <ListItem>هدى أبرام</ListItem>
@@ -178,23 +177,25 @@ export default function About() {
                     </UnorderedList>
                   </VStack>
                   <VStack align="flex-start" spacing={2}>
-                    <Text fontSize="xl" fontWeight="bold"  ml={150}>شكر خاص إلى:</Text>
-                    <UnorderedList 
-                        spacing={1} 
-                        styleType="none" // This removes the bullets
-                        ml={150} // Removes default left margin
-                    >
-                      <ListItem>إسحاق مفمان</ListItem>
-                      <ListItem>عبد العالي</ListItem>
+  <Text fontSize="xl" fontWeight="bold" ml={150}>شكر خاص إلى:</Text>
+  <UnorderedList spacing={1} styleType="none" ml={150}>
+    <ListItem fontWeight="bold" color="green.500">صلاح إفري</ListItem>
+    <ListItem fontWeight="bold" color="green.500">أستاذ كريم</ListItem>
+    <ListItem fontWeight="bold" color="green.500">خبير الطاقة الشمسية</ListItem>
+    <ListItem>-----------</ListItem>
+    <ListItem>:التلاميذ</ListItem>
+    <ListItem>إسحاق مفمان</ListItem>
+                      <ListItem>عبد العالي أزناك</ListItem>
                       <ListItem>يونس بونيت</ListItem>
                       <ListItem>حفصة أيت منصور</ListItem>
-                      <ListItem>يوسف</ListItem>
+                      <ListItem>يوسف فريد</ListItem>
                     </UnorderedList>
                   </VStack>
                 </Grid>
               </Box>
             </Box>
           </Box>
+
         </VStack>
       </Container>
     </>
