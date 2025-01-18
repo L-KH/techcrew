@@ -23,9 +23,9 @@ export default function About() {
 <Box bg="teal.500" py={4} position="sticky" top={0} zIndex={10}>
   <Container maxW="container.xl">
     <VStack spacing={8}>
-      <NextLink href="/" passHref legacyBehavior>
+    <NextLink href="/video" passHref legacyBehavior>
         <Link color="white" fontSize="lg" fontWeight="bold" _hover={{ color: 'teal.200' }}>
-        العودة إلى الرئيسية
+          فيديو توضيحي لاختبار الروبوت
         </Link>
       </NextLink>
     </VStack>
@@ -181,7 +181,7 @@ export default function About() {
   <UnorderedList spacing={1} styleType="none" ml={150}>
     <ListItem fontWeight="bold" color="green.500">صلاح إفري</ListItem>
     <ListItem fontWeight="bold" color="green.500">أستاذ كريم</ListItem>
-    <ListItem fontWeight="bold" color="green.500">خبير الطاقة الشمسية</ListItem>
+    <ListItem fontWeight="bold" color="green.500">عبد الواحد البيشري  </ListItem>
     <ListItem>-----------</ListItem>
     <ListItem>:التلاميذ</ListItem>
     <ListItem>إسحاق مفمان</ListItem>

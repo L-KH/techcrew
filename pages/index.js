@@ -188,12 +188,18 @@ const getRiskLevel = (score) => {
     <HStack spacing={8} justify="center">
       <NextLink href="/" passHref legacyBehavior>
         <Link color="white" fontSize="lg" fontWeight="bold" _hover={{ color: 'teal.200' }}>
-        المستكشف
+        الصفحة الرئيسية
         </Link>
       </NextLink>
       <NextLink href="/about" passHref legacyBehavior>
         <Link color="white" fontSize="lg" fontWeight="bold" _hover={{ color: 'teal.200' }}>
-        من نحن
+        من نحن؟
+        </Link>
+      </NextLink>
+      <NextLink href="/video" passHref legacyBehavior>
+        <Link color="white" fontSize="lg" fontWeight="bold" _hover={{ color: 'teal.200' }}>
+        |  فيديو توضيحي لاختبار الروبوت
+
         </Link>
       </NextLink>
     </HStack>
@@ -234,8 +240,11 @@ const getRiskLevel = (score) => {
 
           {/* Home Section */}
           <Box id="home" w="full" mb={16}>
-            <Heading color="teal.500" mb={8}>نظام الكشف عن البلاستيك</Heading>
-            
+<Box textAlign="center" w="full" py={4}>
+  <Heading as="h1" size="xl" color="teal.500" mb={8}>
+    نظام كشف البلاستيك
+  </Heading>
+</Box>            
             <Box
               {...getRootProps()}
               p={10}
@@ -255,7 +264,7 @@ const getRiskLevel = (score) => {
               }}
             >
               <input {...getInputProps()} />
-              <Text>اسحب وأفلت الصورة هنا، أو انقر للاختيار</Text>
+              <Text>اسحب  الصورة هنا، أو انقر للاختيار</Text>
             </Box>
   
             {image && (
