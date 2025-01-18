@@ -238,7 +238,7 @@ const getRiskLevel = (score) => {
             />
           </Box>
 
-          {/* Home Section */}
+          {/* Home Sectio n */}
           <Box id="home" w="full" mb={16}>
 <Box textAlign="center" w="full" py={4}>
   <Heading as="h1" size="xl" color="teal.500" mb={8}>
